@@ -1,8 +1,14 @@
-<html>
+<ftml>
 <head>sada
 <title>Index</title>
 </head>
 <body>
 Welcome Django
+</br>
+<form id="" method="post" action="usermgmt/addsuccess">
+{% csrf_token %}
+{{ add_user.as_p }}
+<input type="Submit" value="Submit">
+</form>
 </body>
 </html>
