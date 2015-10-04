@@ -1,11 +1,10 @@
-<ftml>
-<head>sada
+<html>
+<head> Welcome to Django user management
 <title>Index</title>
 </head>
 <body>
-Welcome Django
 </br>
-<form id="" method="post" action="usermgmt/addsuccess">
+<form id="addsuucess" method="post" action="/addsuccess/">
 {% csrf_token %}
 {{ add_user.as_p }}
 <input type="Submit" value="Submit">

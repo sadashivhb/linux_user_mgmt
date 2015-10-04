@@ -1,14 +1,13 @@
-<ftml>
-<head>sada
+<html>
+<head>
 <title>Index</title>
 </head>
 <body>
-Welcome Django
-</br>
-<form id="" method="post" action="usermgmt/addsuccess">
-{% csrf_token %}
-{{ add_user.as_p }}
-<input type="Submit" value="Submit">
-</form>
+{% if userexist %}
+<p>User already exist:{{ userexist }}</p>
+{% else %}
+<p>User created: {{ username }}
+{% endif %}
+
 </body>
 </html>
