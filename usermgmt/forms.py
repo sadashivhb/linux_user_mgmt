@@ -8,7 +8,11 @@ class Adduser(forms.Form):
     shelltype = forms.CharField(max_length=128)
     
 
-class Userdel(forms.Form):
+class Usermod(forms.Form):
     """"""
     old_username = forms.CharField(max_length=128)
     new_username = forms.CharField(max_length=128)
+
+class Userdel(forms.Form):
+    """"""
+    username = forms.CharField(max_length=128)

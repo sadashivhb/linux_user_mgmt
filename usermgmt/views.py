@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from usermgmt.forms import Adduser, Userdel
+from usermgmt.forms import Adduser, Usermod, Userdel
 import  pwd
 import crypt
 import os
@@ -41,13 +41,13 @@ def addsuccess(request):
 	    
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
 
-def userdel(request):
-    adduser = Userdel()
+def usermod(request):
+    adduser = Usermod()
 
-    context_dict = {'user_del' : adduser}
-    return render(request, 'usermgmt/userdel.html', context_dict)
+    context_dict = {'user_mod' : adduser}
+    return render(request, 'usermgmt/usermod.html', context_dict)
 
-def userdelsucc(request):
+def usermodsucc(request):
     """"""
     if request.method == 'POST':
  	old_username = request.POST.get('old_username')
@@ -62,4 +62,26 @@ def userdelsucc(request):
         else:
 	   new_username = new_username
 
-    return render(request, 'usermgmt/userdelsucc.html', {'new_username': new_username, 'old_username': old_username})
+    return render(request, 'usermgmt/usermodsucc.html', {'new_username': new_username, 'old_username': old_username})
+
+
+def userdel(request):
+    userdel = Userdel()
+
+    context_dict = {'user_del' : userdel}
+    return render(request, 'usermgmt/userdel.html', context_dict)
+
+
+def userdelsucc(request):
+    """"""
+    if request.method == 'POST':
+ 	username = request.POST.get('username')
+	for user in pwd.getpwall():
+	    if user[0] == username:
+		username = username
+	    	break
+	user_delete = os.system("echo "+sys_sudo_pwd+" | sudo userdel -r "+username+"")
+	if user[0] == username:
+	    username = username
+
+    return render(request, 'usermgmt/userdelsucc.html', {'username': username})#, 'old_username': old_username})
