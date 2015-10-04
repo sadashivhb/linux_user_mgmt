@@ -27,3 +27,6 @@ for u in pwd.getpwall():
     print u[0]
     if u[0] == 'sadaa':
 	pass
+
+import pwd
+pwd.getpwnam('sada')

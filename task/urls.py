@@ -16,4 +16,6 @@ urlpatterns = patterns('',
     url(r'usermodsucc/', views.usermodsucc, name='usermodsucc'),
     url(r'userdel/', views.userdel, name='userdel'),
     url(r'userdelsucc/', views.userdelsucc, name='userdelsucc'),
+    url(r'usergrant/', views.usergrant, name='usergrant'),
+    url(r'usergrantsucc/', views.usergrantsucc, name='usergrantsucc'),
 )

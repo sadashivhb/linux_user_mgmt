@@ -16,3 +16,7 @@ class Usermod(forms.Form):
 class Userdel(forms.Form):
     """"""
     username = forms.CharField(max_length=128)
+
+class UserGrantAccess(forms.Form):
+    """"""
+    username = forms.CharField(max_length=128)

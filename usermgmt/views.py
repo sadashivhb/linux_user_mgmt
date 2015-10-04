@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from usermgmt.forms import Adduser, Usermod, Userdel
+from usermgmt.forms import Adduser, Usermod, Userdel, UserGrantAccess
 import  pwd
 import crypt
 import os
@@ -17,7 +17,7 @@ def index(request):
 
 
 def addsuccess(request):
-    """"""
+    """ """
     if request.method == 'POST':
  	username = request.POST.get('username')
 	password = request.POST.get('password')
@@ -42,13 +42,14 @@ def addsuccess(request):
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
 
 def usermod(request):
+    """ """
     adduser = Usermod()
 
     context_dict = {'user_mod' : adduser}
     return render(request, 'usermgmt/usermod.html', context_dict)
 
 def usermodsucc(request):
-    """"""
+    """ """
     if request.method == 'POST':
  	old_username = request.POST.get('old_username')
  	new_username = request.POST.get('new_username')
@@ -66,6 +67,7 @@ def usermodsucc(request):
 
 
 def userdel(request):
+    """ """
     userdel = Userdel()
 
     context_dict = {'user_del' : userdel}
@@ -73,7 +75,7 @@ def userdel(request):
 
 
 def userdelsucc(request):
-    """"""
+    """ """
     if request.method == 'POST':
  	username = request.POST.get('username')
 	for user in pwd.getpwall():
@@ -85,3 +87,25 @@ def userdelsucc(request):
 	    username = username
 
     return render(request, 'usermgmt/userdelsucc.html', {'username': username})#, 'old_username': old_username})
+
+def usergrant(request):
+    """ """
+    usergrant = UserGrantAccess()
+
+    context_dict = {'user_grant' : usergrant}
+    return render(request, 'usermgmt/usergrant.html', context_dict)
+
+def usergrantsucc(request):
+    """ """
+    if request.method == 'POST':
+ 	username = request.POST.get('username')
+	for user in pwd.getpwall():
+	    if user[0] == username:
+		username = username
+	    	break
+	user_grant = pwd.getpwnam('%s' %username) 
+	if user[0] == username:
+	    username = username
+
+    return render(request, 'usermgmt/usergrantsucc.html', {'username': username})#, 'old_username': old_username})
+
