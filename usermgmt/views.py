@@ -7,6 +7,8 @@ import os
 import sys
 # Create your views here.
 
+sys_sudo_pwd = 'halesh'
+
 def index(request):
     adduser = Adduser()
 
@@ -27,7 +29,7 @@ def addsuccess(request):
 	    	break
 	password = password
 	encpass = crypt.crypt(password, '22')
-	usercheck = os.system("echo  | sudo useradd "+username+" -p "+encpass+" -m -s /bin/bash")
+	usercheck = os.system("echo "+sys_sudo_pwd+"  | sudo useradd "+username+" -p "+encpass+" -m -s /bin/bash")
 	if user[0] == username:
 	    userexist = username
 	    print "User Doesn't exist in the server"
@@ -40,7 +42,24 @@ def addsuccess(request):
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
 
 def userdel(request):
+    adduser = Userdel()
+
+    context_dict = {'user_del' : adduser}
+    return render(request, 'usermgmt/userdel.html', context_dict)
+
+def userdelsucc(request):
     """"""
-    userdel = Userdel()
-    user_del = {'user_del': userdel}
-    return render(request, 'usermgmt/userdel.html', user_del)
+    if request.method == 'POST':
+ 	old_username = request.POST.get('old_username')
+ 	new_username = request.POST.get('new_username')
+	for user in pwd.getpwall():
+	    if user[0] == old_username:
+		old_username = old_username    	
+	    	break
+	user_modify= os.system("echo "+sys_sudo_pwd+" | sudo usermod -l "+new_username+" "+old_username+"")
+	if user[0] == old_username:
+	    old_username = old_username
+        else:
+	   new_username = new_username
+
+    return render(request, 'usermgmt/userdelsucc.html', {'new_username': new_username, 'old_username': old_username})
