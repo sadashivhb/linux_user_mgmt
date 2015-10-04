@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'home', views.home, name='home'),
     url(r'index/', views.index, name='index'),
     url(r'addsuccess/', views.addsuccess, name='addsuccess'),
     url(r'usermod/', views.usermod, name='usermod'),
@@ -18,4 +19,5 @@ urlpatterns = patterns('',
     url(r'userdelsucc/', views.userdelsucc, name='userdelsucc'),
     url(r'usergrant/', views.usergrant, name='usergrant'),
     url(r'usergrantsucc/', views.usergrantsucc, name='usergrantsucc'),
+    url(r'register/', views.register, name='register'),
 )

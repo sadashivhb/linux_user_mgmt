@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load staticfiles %} <!-- New line -->
+	
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <title>{% block title %}Home {% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}" /> <!-- CSS -->
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+  </head>
+    <script src="{% static "js/jquery.js" %}">
+	
+	</script> <!-- JavaScript -->
+    <body>
+        
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+	{% if user.is_authenticated %}
+	<!-- Standard button -->
+        <a href="products">Adduser</a>		
+        <a href="training">Modify User</a>
+        <a href="services">Del user</a>
+        <a href="services">Grant Access</a>
+        <a href="logout">Logout</a>
+	{% endif %}
+        <a href="register">Register</a>
+        <a href="login">Login</a>	
+
+</div>
+      </div>
+    </div>
+	
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+        Date: {% now "jS D Y H:i:s" %}
+                {% block side_block %}{% endblock %}
+	{% if user.is_authenticated %}
+        <h1>Logged : {{ user.username|capfirst }}!</h1>
+	{% endif %}
+        
+        </div>
+      </div>
+     </div>
+
+<div class="text-center">
+<div class="btn-group >
+
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<button type="button" class="btn btn-primary"><a  href="index">Home</a></button>
+
+<!-- Contextual button for informational alert messages -->	
+<button type="button" class="btn btn-info btn"><a  href="index">About Us</a></button>
+
+<!-- Indicates caution should be taken with this action -->
+<button type="button" class="btn btn-warning"><a  href="index">Contact</a></button>
+
+<!-- Indicates a dangerous or potentially negative action -->
+<button type="button" class="btn btn-danger"><a href="index">Home</a></button>
+
+<!-- Indicates a successful or positive action -->
+<button type="button" class="btn btn-success"><a href="index">Home</a></button>
+<button type="button" class="btn btn-success"><a href="feedback">Feedback</a></button>
+<div class="btn-group-vertical">
+    <button type="button" class="btn btn-default dropdown-toggle" 
+      data-toggle="dropdown">
+      Products
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Software</a></li>
+      <li><a href="#">HardWare</a></li>
+    </ul>
+  </div>
+
+</div>
+</div>
+{% block body_block %}
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+Welcome to the linux User Management web portal
+Here you can adduser, modify user, delete user and Grant access to the user by registering 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+If already registered user please sign in here <a href="login">Login</a> New User?
+<a href="register">Register</a>
+{% endblock %}
+
+</div>
+		
+	
+<div class="navbar navbar-default navbar-fixed-bottom">
+ <div class="container">
+<p class="footer">
+<a href="https://twitter.com/?lang=en" class="btn btn-social-icon btn-twitter btn pull-left" ><i class="fa fa-twitter"></i></a>
+<a href="https://www.linkedin.com/" class="btn btn-social-icon btn-linkedin btn pull-left"><i class="fa fa-linkedin"></i></a>
+<a href="https://www.facebook.com/" class="btn btn-social-icon btn-facebook btn pull-left"><i class="fa fa-facebook"></i></a>
+<a href="https://plus.google.com/" class="btn btn-social-icon btn-google btn pull-left"><i class="fa fa-google-plus"></i></a>
+Copyright © 2015 Sadashiv Technologies. All Rights Reserved. <a href="https://www.youtube.com"class = "navbar-button btn-danger btn pull-right ">Subscribe on YouTube</a></p>
+</div>
+</div>
+<p>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
