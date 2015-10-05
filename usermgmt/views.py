@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from usermgmt.forms import Adduser, Usermod, Userdel, UserGrantAccess, UserForm, UserProfileForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 import  pwd
 import crypt
 import os
@@ -14,6 +16,7 @@ def home(request):
     """ """
     return render(request, 'usermgmt/home.html')
 
+@login_required
 def index(request):
     adduser = Adduser()
 
@@ -21,6 +24,7 @@ def index(request):
     return render(request, 'usermgmt/index.html', context_dict)
 
 
+@login_required
 def addsuccess(request):
     """ """
     if request.method == 'POST':
@@ -46,6 +50,7 @@ def addsuccess(request):
 	    
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
 
+@login_required
 def usermod(request):
     """ """
     adduser = Usermod()
@@ -53,6 +58,7 @@ def usermod(request):
     context_dict = {'user_mod' : adduser}
     return render(request, 'usermgmt/usermod.html', context_dict)
 
+@login_required
 def usermodsucc(request):
     """ """
     if request.method == 'POST':
@@ -71,6 +77,7 @@ def usermodsucc(request):
     return render(request, 'usermgmt/usermodsucc.html', {'new_username': new_username, 'old_username': old_username})
 
 
+@login_required
 def userdel(request):
     """ """
     userdel = Userdel()
@@ -79,6 +86,7 @@ def userdel(request):
     return render(request, 'usermgmt/userdel.html', context_dict)
 
 
+@login_required
 def userdelsucc(request):
     """ """
     if request.method == 'POST':
@@ -93,6 +101,7 @@ def userdelsucc(request):
 
     return render(request, 'usermgmt/userdelsucc.html', {'username': username})#, 'old_username': old_username})
 
+@login_required
 def usergrant(request):
     """ """
     usergrant = UserGrantAccess()
@@ -100,13 +109,14 @@ def usergrant(request):
     context_dict = {'user_grant' : usergrant}
     return render(request, 'usermgmt/usergrant.html', context_dict)
 
+@login_required
 def usergrantsucc(request):
     """ """
     if request.method == 'POST':
  	username = request.POST.get('username')
 	for user in pwd.getpwall():
 	    if user[0] == username:
-		username = username
+#		username = username
 	    	break
 	user_grant = pwd.getpwnam('%s' %username) 
 	if user[0] == username:
@@ -166,4 +176,39 @@ def register(request):
     return render(request,
             'usermgmt/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+
+
+
+
+def user_login(request):
+   #If the request is HTTP POST, try to pull out the relevent information
+   if request.method == 'POST':
+      username = request.POST.get('username')
+      password = request.POST.get('password')
+      user = authenticate(username=username, password=password)
+      if user:
+          #Is the account active? It could have disabled
+          if user.is_active:
+              # If the account is valid and active, we can login the user in
+              # We'll send the user bact to the homepage
+              login(request, user)
+              return HttpResponseRedirect('/home')
+          else:
+              # An active account was used - no logging in
+              return HttpResponse("Your rango account disabled")
+      else:
+          # Bad login details were provided, So we can't log the user in
+          print " Invalid login details: {0}, {1}".format(username, password)
+          return HttpResponse("Invalid login details supplied.")
+   # This scenario would most likely be a HTTP GET.
+   else:
+      # No context variables to pass to the template system, hence the
+      # blank dictionay object...
+      return render(request, 'usermgmt/login.html')
+
+def user_logout(request):
+    logout(request)
+
+    #Take the user back to the homepage
+    return HttpResponseRedirect('/home')
 

@@ -1,14 +1,14 @@
-<html>
-<head>
-<title>Welcome to user</title>
-<body>
+{% extends 'usermgmt/home.html' %}
+{% block title %}Register {% endblock %}
+{% block body_block %}
+
         <h1>Register with Linux User admin</h1>
 
         {% if registered %}
-        Web says: <strong>thank you for registering!</strong>
+        <strong>Thank you for registering!</strong>
         <a href="/index/">Return to the homepage.</a><br />
         {% else %}
-        Web says: <strong>register here!</strong><br />
+        <strong>register here!</strong><br />
 
         <form id="user_form" method="post" action="rango/register"
                 enctype="multipart/form-data">
@@ -25,6 +25,6 @@
             <input type="submit" name="submit" value="Register" />
         </form>
         {% endif %}
-</body>
-</html>
+
+{% endblock %}
 

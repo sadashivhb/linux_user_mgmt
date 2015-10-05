@@ -1,13 +1,11 @@
-<html>
-<head>
-<title>Index</title>
-</head>
-<body>
+{% extends 'usermgmt/home.html' %}
+{% block title %}Delete User successLogin {% endblock %}
+{% block body_block %}
+
 </br>
-Deleted user:
+Deleted user Successfully:
 {% if username %}
-<p>Deleted Username is:{{ username }}</p>
+<p>Deleted User is : {{ username }}</p>
 {% endif %}
 
-</body>
-</html>
+{% endblock %}

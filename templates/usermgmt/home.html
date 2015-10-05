@@ -42,10 +42,10 @@
           <ul class="nav navbar-nav navbar-right">
 	{% if user.is_authenticated %}
 	<!-- Standard button -->
-        <a href="products">Adduser</a>		
-        <a href="training">Modify User</a>
-        <a href="services">Del user</a>
-        <a href="services">Grant Access</a>
+        <a href="index">AddUser</a>		
+        <a href="usermod">ModifyUser</a>
+        <a href="userdel">DelUser</a>
+        <a href="usergrant">GrantAccess</a>
         <a href="logout">Logout</a>
 	{% endif %}
         <a href="register">Register</a>
@@ -61,7 +61,7 @@
         Date: {% now "jS D Y H:i:s" %}
                 {% block side_block %}{% endblock %}
 	{% if user.is_authenticated %}
-        <h1>Logged : {{ user.username|capfirst }}!</h1>
+        <h1>Logged In: {{ user.username|capfirst }}!</h1>
 	{% endif %}
         
         </div>

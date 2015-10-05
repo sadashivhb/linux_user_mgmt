@@ -1,13 +1,9 @@
-<html>
-<head> Welcome to Django user management
-<title>Index</title>
-</head>
-<body>
-</br>
+{% extends 'usermgmt/home.html' %}
+{% block title %}Login {% endblock %}
+{% block body_block %}
+
 <form id="addsuucess" method="post" action="/addsuccess/">
 {% csrf_token %}
 {{ add_user.as_p }}
 <input type="Submit" value="Submit">
-</form>
-</body>
-</html>
+{% endblock %}
