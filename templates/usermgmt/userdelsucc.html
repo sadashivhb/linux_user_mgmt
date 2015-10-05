@@ -1,8 +1,9 @@
 {% extends 'usermgmt/home.html' %}
-{% block title %}Delete User successLogin {% endblock %}
+{% block title %}Delete User success {% endblock %}
 {% block body_block %}
 
 </br>
+<form id="userdelsucc" method="post" action="userdelsucc">
 Deleted user Successfully:
 {% if username %}
 <p>Deleted User is : {{ username }}</p>

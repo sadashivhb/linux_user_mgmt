@@ -1,9 +1,8 @@
 {% extends 'usermgmt/home.html' %}
 {% block title %}Modify user name {% endblock %}
 {% block body_block %}
-
 </br>
-<form id="userdel" method="post" action="/usermodsucc/">
+<form id="usermodsucc" method="post" action="usermodsucc">
 {% csrf_token %}
 {{ user_mod.as_p }}
 <input type="Submit" value="Submit">

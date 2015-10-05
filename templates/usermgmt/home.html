@@ -47,15 +47,16 @@
         <a href="userdel">DelUser</a>
         <a href="usergrant">GrantAccess</a>
         <a href="logout">Logout</a>
-	{% endif %}
+	{% else %}
         <a href="register">Register</a>
-        <a href="login">Login</a>	
+        <a href="login">Login</a>
+        {% endif %}
 
 </div>
       </div>
     </div>
 	
-<div class="container-fluid">
+<!-- <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
         Date: {% now "jS D Y H:i:s" %}
@@ -67,8 +68,10 @@
         </div>
       </div>
      </div>
-
+-->
 <div class="text-center">
+{% if user.is_authenticated %}
+{% else %}
 <div class="btn-group >
 
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
@@ -100,6 +103,7 @@
 
 </div>
 </div>
+{% endif %}
 {% block body_block %}
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -114,8 +118,6 @@ Here you can adduser, modify user, delete user and Grant access to the user by r
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-If already registered user please sign in here <a href="login">Login</a> New User?
-<a href="register">Register</a>
 {% endblock %}
 
 </div>
