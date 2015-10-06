@@ -1,8 +1,8 @@
 {% extends 'usermgmt/home.html' %}
 {% block title %}Login {% endblock %}
 {% block body_block %}
-
-<form id="addsuucess" method="post" action="addsuccess">
+<br/>
+<form id="addsuccess" method="post" action="addsuccess">
 {% csrf_token %}
 {{ add_user.as_p }}
 <input type="Submit" value="Submit">

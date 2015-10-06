@@ -1,10 +1,9 @@
 {% extends 'usermgmt/home.html' %}
-{% block title %}Modify user name success {% endblock %}
+{% block title %}User create Success {% endblock %}
 {% block body_block %}
-<form id="usermodsucc" method="post" action="usermodsucc">
-Modify the user:
+<br/>
+Modifed the user:
 {% if new_username %}
 <p>New Username :{{ new_username }}</p>
 {% endif %}
-</form>
-{% endblock %}
+{% endblock%}

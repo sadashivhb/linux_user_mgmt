@@ -1,7 +1,8 @@
 {% extends 'usermgmt/home.html' %}
 {% block title %}Delete user {% endblock %}
 {% block body_block %}
-<form id="userdelsucc" method="post" action="userdelsucc">
+<br>
+<form id="deleteduser" method="post" action="deleteduser">
 {% csrf_token %}
 {{ user_del.as_p }}
 <input type="Submit" value="Submit">

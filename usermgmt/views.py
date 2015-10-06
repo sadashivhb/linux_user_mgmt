@@ -59,7 +59,7 @@ def usermod(request):
     return render(request, 'usermgmt/usermod.html', context_dict)
 
 @login_required
-def usermodsucc(request):
+def modifyuser(request):
     """ """
     if request.method == 'POST':
  	old_username = request.POST.get('old_username')
@@ -87,7 +87,7 @@ def userdel(request):
 
 
 @login_required
-def userdelsucc(request):
+def deleteduser(request):
     """ """
     if request.method == 'POST':
  	username = request.POST.get('username')

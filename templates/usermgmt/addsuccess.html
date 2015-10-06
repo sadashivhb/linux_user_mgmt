@@ -1,6 +1,7 @@
 {% extends 'usermgmt/home.html' %}
 {% block title %}User create Success {% endblock %}
 {% block body_block %}
+<br/>
 <form id="addsuucess" method="post" action="addsuccess">
 {% if userexist %}
 <p>User already exist:{{ userexist }}</p>
