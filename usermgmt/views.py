@@ -110,13 +110,13 @@ def usergrant(request):
     return render(request, 'usermgmt/usergrant.html', context_dict)
 
 @login_required
-def usergrantsucc(request):
+def grantusersucc(request):
     """ """
     if request.method == 'POST':
  	username = request.POST.get('username')
 	for user in pwd.getpwall():
 	    if user[0] == username:
-#		username = username
+		username = username
 	    	break
 	user_grant = pwd.getpwnam('%s' %username) 
 	if user[0] == username:

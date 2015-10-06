@@ -3,7 +3,8 @@
 {% block body_block %}
 <br/>
 Modifed the user:
-{% if new_username %}
-<p>New Username :{{ new_username }}</p>
+{% if new_username and old_username %}
+<p>Old Username : {{ old_username }}, 
+ New Username : {{ new_username }}</p>
 {% endif %}
 {% endblock%}

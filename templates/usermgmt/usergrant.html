@@ -2,7 +2,7 @@
 {% block title %}Grant User access {% endblock %}
 {% block body_block %}
 </br>
-<form id="userdel" method="post" action="usergrantsucc">
+<form id="grantusersucc" method="post" action="grantusersucc">
 {% csrf_token %}
 {{ user_grant.as_p }}
 <input type="Submit" value="Submit">
