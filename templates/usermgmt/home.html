@@ -59,7 +59,7 @@
 <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-        Date: {% now "jS D Y H:i:s" %}
+        Date: {% now "jS D Y"%}
                 {% block side_block %}{% endblock %}
 	{% if user.is_authenticated %}
         <h1>Logged In: {{ user.username|capfirst }}!</h1>
@@ -69,41 +69,6 @@
       </div>
      </div>
 
-<div class="text-center">
-{% if user.is_authenticated %}
-{% else %}
-<div class="btn-group >
-
-<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-<button type="button" class="btn btn-primary"><a  href="index">Home</a></button>
-
-<!-- Contextual button for informational alert messages -->	
-<button type="button" class="btn btn-info btn"><a  href="index">About Us</a></button>
-
-<!-- Indicates caution should be taken with this action -->
-<button type="button" class="btn btn-warning"><a  href="index">Contact</a></button>
-
-<!-- Indicates a dangerous or potentially negative action -->
-<button type="button" class="btn btn-danger"><a href="index">Home</a></button>
-
-<!-- Indicates a successful or positive action -->
-<button type="button" class="btn btn-success"><a href="index">Home</a></button>
-<button type="button" class="btn btn-success"><a href="feedback">Feedback</a></button>
-<div class="btn-group-vertical">
-    <button type="button" class="btn btn-default dropdown-toggle" 
-      data-toggle="dropdown">
-      Products
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Software</a></li>
-      <li><a href="#">HardWare</a></li>
-    </ul>
-  </div>
-
-</div>
-</div>
-{% endif %}
 {% block body_block %}
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

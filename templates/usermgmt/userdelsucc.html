@@ -3,9 +3,11 @@
 {% block body_block %}
 </br>
 <form id="userdelsucc" method="post" action="userdelsucc">
-Deleted user Successfully:
-{% if username %}
-<p>Deleted User is : {{ username }}</p>
+{% if username == None %}
+User not found in the server</br>
+Please pass the username with existance in the server to delete
+{% else %}
+Deleted user Successfully:</br>
+<p>Deleted User is : {{ username }}</p></br>
 {% endif %}
-
 {% endblock %}

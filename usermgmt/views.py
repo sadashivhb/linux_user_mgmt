@@ -39,13 +39,11 @@ def addsuccess(request):
 	password = password
 	encpass = crypt.crypt(password, '22')
 	usercheck = os.system("echo "+sys_sudo_pwd+"  | sudo useradd "+username+" -p "+encpass+" -m -s /bin/bash")
-	if user[0] == username:
-	    userexist = username
-	    print "User Doesn't exist in the server"
-	    print "Creating the User: %s" %username
-	else:
-	   userexist = None
+	if userexist == username:
 	   print "User already exist: %s" %username
+	else:
+	   print "User Doesn't exist in the server"
+	   print "Creating the User: %s" %username
         
 	    
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
@@ -66,15 +64,16 @@ def modifyuser(request):
  	new_username = request.POST.get('new_username')
 	for user in pwd.getpwall():
 	    if user[0] == old_username:
-		old_username = old_username    	
+		oldusername = old_username
 	    	break
 	user_modify= os.system("echo "+sys_sudo_pwd+" | sudo usermod -l "+new_username+" "+old_username+"")
 	if user[0] == old_username:
-	    old_username = old_username
+	    oldusername = old_username
+            new_username = new_username
         else:
-	   new_username = new_username
+	    oldusername = None
 
-    return render(request, 'usermgmt/usermodsucc.html', {'new_username': new_username, 'old_username': old_username})
+    return render(request, 'usermgmt/usermodsucc.html', {'new_username': new_username, 'oldusername': oldusername})
 
 
 @login_required
@@ -98,8 +97,10 @@ def deleteduser(request):
 	user_delete = os.system("echo "+sys_sudo_pwd+" | sudo userdel -r "+username+"")
 	if user[0] == username:
 	    username = username
+	else:
+	    username = None
 
-    return render(request, 'usermgmt/userdelsucc.html', {'username': username})#, 'old_username': old_username})
+    return render(request, 'usermgmt/userdelsucc.html', {'username': username})
 
 @login_required
 def usergrant(request):
@@ -120,9 +121,11 @@ def grantusersucc(request):
 	    	break
 	user_grant = pwd.getpwnam('%s' %username) 
 	if user[0] == username:
-	    username = username
+	    userfound = username
+        else:
+	    username = None
 
-    return render(request, 'usermgmt/usergrantsucc.html', {'username': username})#, 'old_username': old_username})
+    return render(request, 'usermgmt/usergrantsucc.html', {'userfound': userfound, 'username': username})
 
 def register(request):
 
