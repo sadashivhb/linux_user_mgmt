@@ -119,13 +119,17 @@ def grantusersucc(request):
 	    if user[0] == username:
 		username = username
 	    	break
-	user_grant = pwd.getpwnam('%s' %username) 
+	try:
+	    user_grant = pwd.getpwnam('%s' %username) 
+        except:
+	    print "User name doesn't exist in ther server"
+	    
 	if user[0] == username:
-	    userfound = username
+	    username = username
         else:
 	    username = None
 
-    return render(request, 'usermgmt/usergrantsucc.html', {'userfound': userfound, 'username': username})
+    return render(request, 'usermgmt/usergrantsucc.html', {'username': username})
 
 def register(request):
 
@@ -198,7 +202,7 @@ def user_login(request):
               return HttpResponseRedirect('/home')
           else:
               # An active account was used - no logging in
-              return HttpResponse("Your rango account disabled")
+              return HttpResponse("Your account got disabled")
       else:
           # Bad login details were provided, So we can't log the user in
           print " Invalid login details: {0}, {1}".format(username, password)

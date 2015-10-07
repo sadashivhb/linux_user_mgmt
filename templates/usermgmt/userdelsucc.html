@@ -4,10 +4,11 @@
 </br>
 <form id="userdelsucc" method="post" action="userdelsucc">
 {% if username == None %}
+<h1>The username provided is not exist in the server</h1>
 User not found in the server</br>
 Please pass the username with existance in the server to delete
 {% else %}
-Deleted user Successfully:</br>
-<p>Deleted User is : {{ username }}</p></br>
+<h1>User got Deleted Successfully:</br>
+<p>Deleted Username : {{ username }}</p></br>
 {% endif %}
 {% endblock %}

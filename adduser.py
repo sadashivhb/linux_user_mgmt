@@ -28,5 +28,8 @@ for u in pwd.getpwall():
     if u[0] == 'sadaa':
 	pass
 
-import pwd
-pwd.getpwnam('sada')
+try:
+ a = pwd.getpwnam('sada')
+ print a
+except:
+ print "bye"

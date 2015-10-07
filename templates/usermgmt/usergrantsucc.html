@@ -2,8 +2,11 @@
 {% block title %}Grant User access success {% endblock %}
 {% block body_block %}
 </br>
-Grant the acccess to user:
-{% if username %}
+{% if username == None %}
+<h1>User name doesn't exist in the server</h1>
+<p>Trying to grant access to Username : {{ username }}</p>
+{% else %}
+<h1>Grant the acccess to user:</h1>
 <p>Grant Access to Username : {{ username }}</p>
 {% endif %}
 

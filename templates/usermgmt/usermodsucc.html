@@ -3,11 +3,12 @@
 {% block body_block %}
 <br/>
 {% if oldusername == None %}
+<h1>The username provided is not exist in the server</h1>
 <p>User name doesn't exist in the server : {{ oldusername }}</br>
-   Please try to modify user with username existance.</br>
+   Please try to modify username with exist in the server.</br>
 {% else %}
-Here is Modifed user status:</br>
-oldusername : {{ oldusername }}</br>
+<h1>Here is Modifed user status:</h1></br>
+Old username : {{ oldusername }}</br>
 New Username : {{ new_username }}</p>
 {% endif %}
 {% endblock%}

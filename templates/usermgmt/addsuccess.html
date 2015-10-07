@@ -4,8 +4,10 @@
 <br/>
 <form id="addsuucess" method="post" action="addsuccess">
 {% if userexist %}
-<p>User already exist:{{ userexist }}</p>
+<h1>Username Already exists in linux machine</h1>
+<p>User already exist : {{ userexist }}</p>
 {% else %}
+<h1>User got created successfully in linux machine</h1>
 <p>User created: {{ username }}
 {% endif %}
 </form>
