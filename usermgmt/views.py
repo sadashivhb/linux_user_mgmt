@@ -124,7 +124,7 @@ def grantusersucc(request):
 	    username = username
 	    get_sudoers_file = os.system("echo "+sys_sudo_pwd+"| sudo cp /etc/sudoers .")
 	    get_sudo_tmp = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers sudoers.tmp")
-	    change_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 066 sudoers")
+	    change_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 777 sudoers")
 	    grant_sudo_access = '%s ALL=(ALL) ALL' %username
 	    print grant_sudo_access
 	    with open('sudoers', 'a') as fr: 
