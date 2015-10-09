@@ -119,13 +119,19 @@ def grantusersucc(request):
 	    if user[0] == username:
 		username = username
 	    	break
-	try:
-	    user_grant = pwd.getpwnam('%s' %username) 
-        except:
-	    print "User name doesn't exist in ther server"
 	    
 	if user[0] == username:
 	    username = username
+	    get_sudoers_file = os.system("echo "+sys_sudo_pwd+"| sudo cp /etc/sudoers .")
+	    get_sudo_tmp = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers sudoers.tmp")
+	    change_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 066 sudoers")
+	    grant_sudo_access = '%s ALL=(ALL) ALL' %username
+	    print grant_sudo_access
+	    with open('sudoers', 'a') as fr: 
+	    	fr.write('\n')
+	    	fr.write(grant_sudo_access)
+	    read_only_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 044 sudoers")
+	    get_sudo_access = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers /etc/sudoers")
         else:
 	    username = None
 
