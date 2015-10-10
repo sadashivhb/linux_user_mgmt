@@ -8,6 +8,7 @@ import  pwd
 import crypt
 import os
 import sys
+import grp
 # Create your views here.
 
 sys_sudo_pwd = 'halesh'
@@ -67,6 +68,7 @@ def modifyuser(request):
 		oldusername = old_username
 	    	break
 	user_modify= os.system("echo "+sys_sudo_pwd+" | sudo usermod -l "+new_username+" "+old_username+"")
+	group_modify= os.system("echo "+sys_sudo_pwd+" | sudo groupmod -n "+new_username+" "+old_username+"")
 	if user[0] == old_username:
 	    oldusername = old_username
             new_username = new_username
@@ -95,6 +97,7 @@ def deleteduser(request):
 		username = username
 	    	break
 	user_delete = os.system("echo "+sys_sudo_pwd+" | sudo userdel -r "+username+"")
+	group_delete = os.system("echo "+sys_sudo_pwd+" | sudo groupdel "+username+"")
 	if user[0] == username:
 	    username = username
 	else:
