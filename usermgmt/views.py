@@ -96,6 +96,12 @@ def deleteduser(request):
 	    if user[0] == username:
 		username = username
 	    	break
+	user_logged = os.system("who | cut -d' ' -f1 | sort | uniq > user.txt")
+	fr = open('user.txt', 'r')
+	for userlog in fr:
+	    if userlog == username:
+		return userlog
+	fr.close()
 	user_delete = os.system("echo "+sys_sudo_pwd+" | sudo userdel -r "+username+"")
 	group_delete = os.system("echo "+sys_sudo_pwd+" | sudo groupdel "+username+"")
 	if user[0] == username:
@@ -103,7 +109,7 @@ def deleteduser(request):
 	else:
 	    username = None
 
-    return render(request, 'usermgmt/userdelsucc.html', {'username': username})
+    return render(request, 'usermgmt/userdelsucc.html', {'username': username, 'userlog': userlog})
 
 @login_required
 def usergrant(request):

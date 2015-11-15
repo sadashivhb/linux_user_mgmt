@@ -3,7 +3,10 @@
 {% block body_block %}
 </br>
 <form id="userdelsucc" method="post" action="userdelsucc">
-{% if username == None %}
+{% if userlog and username %}
+<h1>Currently user logged into system: {{ userlog }}</h1>
+<h3>Please logout the user {{ userlog }} and Delete user</h3>
+{% elif username == None %}
 <h1>The username provided is not exist in the server</h1>
 User not found in the server</br>
 Please pass the username with existance in the server to delete
