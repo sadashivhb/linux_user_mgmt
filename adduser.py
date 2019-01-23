@@ -26,7 +26,7 @@ import pwd
 for u in pwd.getpwall():
     print u[0]
     if u[0] == 'sadaa':
-	pass
+    pass
 
 try:
  a = pwd.getpwnam('sada')
