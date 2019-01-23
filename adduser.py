@@ -29,7 +29,7 @@ for u in pwd.getpwall():
     pass
 
 try:
- a = pwd.getpwnam('sada')
- print a
+    a = pwd.getpwnam('sada')
+    print a
 except:
- print "bye"
+    print "bye"
