@@ -77,7 +77,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates') 
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATE_DIRS = [
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -106,3 +106,5 @@ REGISTRATION_OPEN = True # If true user can register
 ACCOUNT_ACTIVATION_DAYS = 7 # One week activation windows
 REGISTRATION_AUTO_LOGIN = True # If True the user will be automatically logged in
 LOGIN_REDIRECT_URL = '/index'
+
+##############################
