@@ -44,3 +44,6 @@ However please install python=2.7.9 and Django=1.7.5.
 By pip install, easy_install or virtualenv your wish.
 
 Once installation done please perform step no 4 and 5 Again.
+
+============================================================================================================================
+
