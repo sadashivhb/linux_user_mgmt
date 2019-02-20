@@ -8,7 +8,7 @@ class Adduser(forms.Form):
     username = forms.CharField(max_length=128)
     password = forms.CharField(widget=forms.PasswordInput)
     shelltype = forms.CharField(max_length=128)
-    
+
 
 class Usermod(forms.Form):
     """ """
@@ -37,3 +37,6 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('website',)
 
+class TestForm(forms.ModelForm):
+    """ """
+    address = forms.CharFiled(max_length=128)
