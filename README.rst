@@ -2,7 +2,6 @@
 Manage user Account in Linux
 ============================
 
-
 This repositary is going to help AddUser, ModifyUser and DelUser in Linux only
 
 Step 1 : clone git repo either of way you feel compfort:::
