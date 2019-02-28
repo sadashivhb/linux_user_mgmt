@@ -47,4 +47,3 @@ By pip install, easy_install or virtualenv your wish.
 Once installation done please perform step no 4 and 5 Again.
 
 ============================================================================================================================
-
