@@ -9,12 +9,22 @@ import crypt
 import os
 import sys
 import grp
-# Create your views here.
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
+# Create your views here.
 sys_sudo_pwd = 'halesh'
 
+@csrf_exempt
 def home(request):
     """ """
+    print("Welcome to Web hooks implementation part")
+    # Load the event data from JSON
+    #print(request.body)
+    data = json.loads(request.body)
+    print(data)
+    #return 200, 'Processed.'
     return render(request, 'usermgmt/home.html')
 
 @login_required
