@@ -1,25 +1,25 @@
-from django.conf.urls import patterns, include, url
+from django.urls import path
 from django.contrib import admin
 import usermgmt
 from usermgmt import views
 
 admin.autodiscover()
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'task.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'home', views.home, name='home'),
-    url(r'index', views.index, name='index'),
-    url(r'addsuccess', views.addsuccess, name='addsuccess'),
-    url(r'usermod', views.usermod, name='usermod'),
-    url(r'modifyuser', views.modifyuser, name='modifyuser'),
-    url(r'userdel', views.userdel, name='userdel'),
-    url(r'deleteduser', views.deleteduser, name='deleteduser'),
-    url(r'usergrant', views.usergrant, name='usergrant'),
-    url(r'grantusersucc', views.grantusersucc, name='grantusersucc'),
-    url(r'register', views.register, name='register'),
-    url(r'login', views.user_login, name='login'),
-    url(r'logout', views.user_logout, name='logout'),
+    path(r'admin/', admin.site.urls),
+    path(r'home', views.home, name='home'),
+    path(r'index', views.index, name='index'),
+    path(r'addsuccess', views.addsuccess, name='addsuccess'),
+    path(r'usermod', views.usermod, name='usermod'),
+    path(r'modifyuser', views.modifyuser, name='modifyuser'),
+    path(r'userdel', views.userdel, name='userdel'),
+    path(r'deleteduser', views.deleteduser, name='deleteduser'),
+    path(r'usergrant', views.usergrant, name='usergrant'),
+    path(r'grantusersucc', views.grantusersucc, name='grantusersucc'),
+    path(r'register', views.register, name='register'),
+    path(r'login', views.user_login, name='login'),
+    path(r'logout', views.user_logout, name='logout'),
 
-)
+]

@@ -29,24 +29,24 @@ def index(request):
 def addsuccess(request):
     """ """
     if request.method == 'POST':
- 	username = request.POST.get('username')
-	password = request.POST.get('password')
-	shelltype = request.POST.get('shelltype')
-	userexist = None
-	for user in pwd.getpwall():
-	    if user[0] == username:
-	    	userexist =  username
-	    	break
-	password = password
-	encpass = crypt.crypt(password, '22')
-	usercheck = os.system("echo "+sys_sudo_pwd+"  | sudo useradd "+username+" -p "+encpass+" -m -s /bin/bash")
-	if userexist == username:
-	   print "User already exist: %s" %username
-	else:
-	   print "User Doesn't exist in the server"
-	   print "Creating the User: %s" %username
-        
-	    
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        shelltype = request.POST.get('shelltype')
+        userexist = None
+        for user in pwd.getpwall():
+            if user[0] == username:
+                userexist =  username
+                break
+        password = password
+        encpass = crypt.crypt(password, '22')
+        usercheck = os.system("echo "+sys_sudo_pwd+"  | sudo useradd "+username+" -p "+encpass+" -m -s /bin/bash")
+        if userexist == username:
+           print("User already exist: %s" %username)
+        else:
+           print("User Doesn't exist in the server")
+           print("Creating the User: %s" %username)
+
+
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
 
 @login_required
@@ -61,19 +61,19 @@ def usermod(request):
 def modifyuser(request):
     """ """
     if request.method == 'POST':
- 	old_username = request.POST.get('old_username')
- 	new_username = request.POST.get('new_username')
-	for user in pwd.getpwall():
-	    if user[0] == old_username:
-		oldusername = old_username
-	    	break
-	user_modify= os.system("echo "+sys_sudo_pwd+" | sudo usermod -l "+new_username+" "+old_username+"")
-	group_modify= os.system("echo "+sys_sudo_pwd+" | sudo groupmod -n "+new_username+" "+old_username+"")
-	if user[0] == old_username:
-	    oldusername = old_username
+        old_username = request.POST.get('old_username')
+        new_username = request.POST.get('new_username')
+        for user in pwd.getpwall():
+            if user[0] == old_username:
+                oldusername = old_username
+                break
+        user_modify= os.system("echo "+sys_sudo_pwd+" | sudo usermod -l "+new_username+" "+old_username+"")
+        group_modify= os.system("echo "+sys_sudo_pwd+" | sudo groupmod -n "+new_username+" "+old_username+"")
+        if user[0] == old_username:
+            oldusername = old_username
             new_username = new_username
         else:
-	    oldusername = None
+            oldusername = None
 
     return render(request, 'usermgmt/usermodsucc.html', {'new_username': new_username, 'oldusername': oldusername})
 
@@ -91,23 +91,23 @@ def userdel(request):
 def deleteduser(request):
     """ """
     if request.method == 'POST':
- 	username = request.POST.get('username')
-	for user in pwd.getpwall():
-	    if user[0] == username:
-		username = username
-	    	break
-	user_logged = os.system("who | cut -d' ' -f1 | sort | uniq > user.txt")
-	fr = open('user.txt', 'r')
-	for userlog in fr:
-	    if userlog == username:
-		return userlog
-	fr.close()
-	user_delete = os.system("echo "+sys_sudo_pwd+" | sudo userdel -r "+username+"")
-	group_delete = os.system("echo "+sys_sudo_pwd+" | sudo groupdel "+username+"")
-	if user[0] == username:
-	    username = username
-	else:
-	    username = None
+        username = request.POST.get('username')
+        for user in pwd.getpwall():
+            if user[0] == username:
+                username = username
+                break
+        user_logged = os.system("who | cut -d' ' -f1 | sort | uniq > user.txt")
+        fr = open('user.txt', 'r')
+        for userlog in fr:
+            if userlog == username:
+                return userlog
+        fr.close()
+        user_delete = os.system("echo "+sys_sudo_pwd+" | sudo userdel -r "+username+"")
+        group_delete = os.system("echo "+sys_sudo_pwd+" | sudo groupdel "+username+"")
+        if user[0] == username:
+            username = username
+        else:
+            username = None
 
     return render(request, 'usermgmt/userdelsucc.html', {'username': username, 'userlog': userlog})
 
@@ -123,26 +123,26 @@ def usergrant(request):
 def grantusersucc(request):
     """ """
     if request.method == 'POST':
- 	username = request.POST.get('username')
-	for user in pwd.getpwall():
-	    if user[0] == username:
-		username = username
-	    	break
-	    
-	if user[0] == username:
-	    username = username
-	    get_sudoers_file = os.system("echo "+sys_sudo_pwd+"| sudo cp /etc/sudoers .")
-	    get_sudo_tmp = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers sudoers.tmp")
-	    change_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 777 sudoers")
-	    grant_sudo_access = '%s ALL=(ALL) ALL' %username
-	    print grant_sudo_access
-	    with open('sudoers', 'a') as fr: 
-	    	fr.write('\n')
-	    	fr.write(grant_sudo_access)
-	    read_only_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 044 sudoers")
-	    get_sudo_access = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers /etc/sudoers")
+        username = request.POST.get('username')
+        for user in pwd.getpwall():
+            if user[0] == username:
+                username = username
+                break
+
+        if user[0] == username:
+            username = username
+            get_sudoers_file = os.system("echo "+sys_sudo_pwd+"| sudo cp /etc/sudoers .")
+            get_sudo_tmp = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers sudoers.tmp")
+            change_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 777 sudoers")
+            grant_sudo_access = '%s ALL=(ALL) ALL' %username
+            print(grant_sudo_access)
+            with open('sudoers', 'a') as fr:
+                fr.write('\n')
+                fr.write(grant_sudo_access)
+            read_only_permission = os.system("echo "+sys_sudo_pwd+" | sudo chmod 044 sudoers")
+            get_sudo_access = os.system("echo "+sys_sudo_pwd+" | sudo cp sudoers /etc/sudoers")
         else:
-	    username = None
+            username = None
 
     return render(request, 'usermgmt/usergrantsucc.html', {'username': username})
 
@@ -186,7 +186,7 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print user_form.errors, profile_form.errors
+            print(user_form.errors, profile_form.errors)
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
@@ -220,7 +220,7 @@ def user_login(request):
               return HttpResponse("Your account got disabled")
       else:
           # Bad login details were provided, So we can't log the user in
-          print " Invalid login details: {0}, {1}".format(username, password)
+          print("Invalid login details: {0}, {1}".format(username, password))
           return HttpResponse("Invalid login details supplied.")
    # This scenario would most likely be a HTTP GET.
    else:
